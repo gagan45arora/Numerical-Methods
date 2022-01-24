@@ -1,15 +1,27 @@
+data_set=[(0,1),(1,2),(2,4)]
+n=len(data_set)
+def L0(x):
+	val=1
+	val=(x-data_set[1][0])/(data_set[0][0]-data_set[1][0])*(x-data_set[2][0])/(data_set[0][0]-data_set[2][0])
+	return val
 
-def y(x):
-	return x**2-10
-def y_der(x):
-	return 2*x
+def L1(x):
+	val=1
+	val=(x-data_set[2][0])/(data_set[1][0]-data_set[2][0])*(x-data_set[0][0])/(data_set[1][0]-data_set[0][0])
+	return val
 
-def root_find(x0):
-	x=x0
-	for i in range (0,100):
-		x=x0-y(x0)/y_der(x0)
-		x0=x
-	return x
+def L2(x):
+	val=1
+	val=(x-data_set[0][0])/(data_set[2][0]-data_set[0][0])*(x-data_set[1][0])/(data_set[2][0]-data_set[1][0])
+	return val	
 
-print(root_find(-0.00000001))
-
+def P(x):
+	res=data_set[0][1]*(x-data_set[1][0])/(data_set[0][0]-data_set[1][0])*(x-data_set[2][0])/(data_set[0][0]-data_set[2][0])
+	res+=data_set[1][1]*(x-data_set[2][0])/(data_set[1][0]-data_set[2][0])*(x-data_set[0][0])/(data_set[1][0]-data_set[0][0])
+	res+=data_set[2][1]*(x-data_set[0][0])/(data_set[2][0]-data_set[0][0])*(x-data_set[1][0])/(data_set[2][0]-data_set[1][0])
+	return res
+print("Enter the value where you want to find the value of interpolation")
+inp=float(input())
+ans=P(inp)
+print("The interpolated value at x=1.5 is ",ans)
+print("Percentage error in interpolation is",100*(2**inp-ans)/2**inp)
