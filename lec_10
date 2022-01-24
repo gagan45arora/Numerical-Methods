@@ -20,5 +20,8 @@ def P(x):
 	res+=data_set[1][1]*(x-data_set[2][0])/(data_set[1][0]-data_set[2][0])*(x-data_set[0][0])/(data_set[1][0]-data_set[0][0])
 	res+=data_set[2][1]*(x-data_set[0][0])/(data_set[2][0]-data_set[0][0])*(x-data_set[1][0])/(data_set[2][0]-data_set[1][0])
 	return res
-
-print(P(1.5))
+print("Enter the value where you want to find the value of interpolation")
+inp=float(input())
+ans=P(inp)
+print("The interpolated value at x=1.5 is ",ans)
+print("Percentage error in interpolation is",100*(2**inp-ans)/2**inp)
